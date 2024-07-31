@@ -37,6 +37,12 @@ include 'config/koneksi.php';
                         <li class="nav-item">
                             <a class="nav-link" href="?pg=user">User</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?pg=level">Level</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?pg=kategori">Kategori</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown
