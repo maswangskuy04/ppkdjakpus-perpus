@@ -1,16 +1,16 @@
 <?php
 
-$queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user LEFT JOIN level ON level.id = user.id_level ORDER BY id DESC");
+$queryBuku = mysqli_query($koneksi, "SELECT kategori.nama_kategori, buku.* FROM buku LEFT JOIN kategori ON kategori.id = buku.id_kategori ORDER BY id DESC");
 
 ?>
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">Data User</div>
+                <div class="card-header">Data Buku</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
-                        <a href="?pg=tambah-user" class="btn btn-primary">Tambah</a>
+                        <a href="?pg=tambah-buku" class="btn btn-primary">Tambah</a>
                     </div>
                     <?php if (isset($_GET['tambah'])) : ?>
                         <div class="alert alert-success">
@@ -23,7 +23,7 @@ $queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user L
                         </div>
                     <?php endif ?>
                     <?php if (isset($_GET['edit'])) : ?>
-                        <div class="alert alert-warning">
+                        <div class="alert alert-secondary">
                             Data Berhasil diedit
                         </div>
                     <?php endif ?>
@@ -31,23 +31,29 @@ $queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user L
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Level</th>
-                                <th>Nama</th>
-                                <th>Email</th>
+                                <th>Nama Kategori</th>
+                                <th>Judul</th>
+                                <th>Jumlah</th>
+                                <th>Penerbit</th>
+                                <th>Tahun Terbit</th>
+                                <th>Penulis</th>
                                 <th class="col-2 text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $no = 1;
-                            while ($rowUser = mysqli_fetch_assoc($queryUser)) : ?>
+                            while ($rowBuku = mysqli_fetch_assoc($queryBuku)) : ?>
                                 <tr>
                                     <td><?php echo $no++ ?></td>
-                                    <td><?php echo $rowUser['nama_level']; ?></td>
-                                    <td><?php echo $rowUser['nama_lengkap'] ?></td>
-                                    <td><?php echo $rowUser['email'] ?></td>
+                                    <td><?php echo $rowBuku['nama_kategori']; ?></td>
+                                    <td><?php echo $rowBuku['judul'] ?></td>
+                                    <td><?php echo $rowBuku['jumlah'] ?></td>
+                                    <td><?php echo $rowBuku['penerbit'] ?></td>
+                                    <td><?php echo $rowBuku['tahun_terbit'] ?></td>
+                                    <td><?php echo $rowBuku['penulis'] ?></td>
                                     <td class="text-center">
-                                        <a href="?pg=tambah-user&edit=<?= $rowUser['id']; ?>" class="btn btn-sm btn-secondary">Update</a> |
-                                        <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-user&delete=<?= $rowUser['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="?pg=tambah-buku&edit=<?= $rowBuku['id']; ?>" class="btn btn-sm btn-secondary">Update</a> |
+                                        <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-buku&delete=<?= $rowBuku['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             <?php endwhile ?>

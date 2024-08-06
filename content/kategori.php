@@ -7,7 +7,7 @@ $queryKategori = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id DESC
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">Kategori</div>
+                <div class="card-header">Data Kategori</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
                         <a href="?pg=tambah-kategori" class="btn btn-primary">Tambah</a>
@@ -27,7 +27,7 @@ $queryKategori = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id DESC
                             Data Berhasil diedit
                         </div>
                     <?php endif ?>
-                    <table class="table table-bordered">
+                    <table class="table table-hover table-responsive">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -43,7 +43,7 @@ $queryKategori = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id DESC
                                     <td><?php echo $no++ ?></td>
                                     <td><?php echo $rowKategori['nama_kategori'] ?></td>
                                     <td><?php echo $rowKategori['keterangan'] ?></td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="?pg=tambah-kategori&edit=<?= $rowKategori['id']; ?>" class="btn btn-sm btn-secondary">Edit</a> |
                                         <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-kategori&delete=<?= $rowKategori['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>

@@ -7,7 +7,7 @@ $queryLevel = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">Level</div>
+                <div class="card-header">Data Level</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
                         <a href="?pg=tambah-level" class="btn btn-primary">Tambah</a>
@@ -27,7 +27,7 @@ $queryLevel = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
                             Data Berhasil diedit
                         </div>
                     <?php endif ?>
-                    <table class="table table-bordered">
+                    <table class="table table-hover table-responsive">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -43,8 +43,8 @@ $queryLevel = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
                                     <td><?php echo $no++ ?></td>
                                     <td><?php echo $rowLevel['nama_level'] ?></td>
                                     <td><?php echo $rowLevel['keterangan'] ?></td>
-                                    <td>
-                                        <a href="?pg=tambah-level&edit=<?= $rowLevel['id']; ?>" class="btn btn-sm btn-secondary">Edit</a> |
+                                    <td class="text-center">
+                                        <a href="?pg=tambah-level&edit=<?= $rowLevel['id']; ?>" class="btn btn-sm btn-secondary">Update</a> |
                                         <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-level&delete=<?= $rowLevel['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>

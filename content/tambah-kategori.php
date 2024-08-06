@@ -13,11 +13,13 @@ if (isset($_POST['simpan'])) {
 
     if (!$id) {
         $insert = mysqli_query($koneksi, "INSERT INTO kategori (nama_kategori, keterangan) VALUES ('$nama_kategori', '$keterangan')");
+        header("location:?pg=kategori&tambah=berhasil");
     } else {
         $update = mysqli_query($koneksi, "UPDATE kategori SET nama_kategori = '$nama_kategori', keterangan = '$keterangan' WHERE id = '$id'");
+        header("location:?pg=kategori&edit=berhasil");
     }
 
-    header("location:?pg=kategori&tambah=berhasil");
+    
 }
 
 if (isset($_GET['delete'])) {
@@ -32,7 +34,7 @@ if (isset($_GET['delete'])) {
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">Data User</div>
+                <div class="card-header">Tambah Data Kategori</div>
                 <div class="card-body">
                     <form action="" method="post">
                         <div class="mb-3">
