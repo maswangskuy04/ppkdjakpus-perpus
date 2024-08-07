@@ -1,6 +1,6 @@
 <?php
 
-$queryUser = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggota, user.nama_lengkap, peminjaman.* FROM peminjaman LEFT JOIN anggota ON anggota.id = peminjaman.id_anggota LEFT JOIN user ON user.id = peminjaman.id_user ORDER BY id DESC");
+$queryPinjam = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggota, user.nama_lengkap, peminjaman.* FROM peminjaman LEFT JOIN anggota ON anggota.id = peminjaman.id_anggota LEFT JOIN user ON user.id = peminjaman.id_user ORDER BY id DESC");
 
 ?>
 <div class="container mt-5">
@@ -10,7 +10,7 @@ $queryUser = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggota
                 <div class="card-header">Transaksi Peminjaman</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
-                        <a href="?pg=tambah-user" class="btn btn-sm btn-success">Tambah</a>
+                        <a href="?pg=tambah-peminjaman" class="btn btn-sm btn-success">Tambah</a>
                     </div>
                     <?php if (isset($_GET['tambah'])) : ?>
                         <div class="alert alert-success">
@@ -42,18 +42,18 @@ $queryUser = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggota
                         </thead>
                         <tbody>
                             <?php $no = 1;
-                            while ($rowUser = mysqli_fetch_assoc($queryUser)) : ?>
+                            while ($row = mysqli_fetch_assoc($queryPinjam)) : ?>
                                 <tr>
                                     <td><?php echo $no++ ?></td>
-                                    <td><?php echo $rowUser['nama_level']; ?></td>
-                                    <td><?php echo $rowUser['nama_lengkap'] ?></td>
-                                    <td><?php echo $rowUser['email'] ?></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><?php echo $row['kode_transaksi']; ?></td>
+                                    <td><?php echo $row['nama_anggota'] ?></td>
+                                    <td><?php echo $row['tgl_pinjam']; ?></td>
+                                    <td><?php echo $row['tgl_kembali']; ?></td>
+                                    <td><?php echo $row['status']; ?></td>
+                                    <td><?php echo $row['nama_lengkap']; ?></td>
                                     <td class="text-center">
-                                        <a href="?pg=tambah-user&edit=<?= $rowUser['id']; ?>" class="btn btn-sm btn-secondary">Update</a> |
-                                        <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-user&delete=<?= $rowUser['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="?pg=tambah-peminjaman&detail=<?= $row['id']; ?>" class="btn btn-sm btn-secondary">Detail</a> |
+                                        <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-user&delete=<?= $row['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             <?php endwhile ?>

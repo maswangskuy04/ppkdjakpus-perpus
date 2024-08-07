@@ -35,10 +35,10 @@ include 'config/koneksi.php';
                             <a class="nav-link active" aria-current="page" href="?page=home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="?page=peminjaman">Peminjaman</a>
+                            <a class="nav-link" href="?page=pinjam">Peminjaman</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="?page=home">Pengembalian</a>
+                            <a class="nav-link" href="?page=pengembalian">Pengembalian</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,11 +48,12 @@ include 'config/koneksi.php';
                                 <li><a class="dropdown-item" href="?pg=kategori">Kategori</a></li>
                                 <li><a class="dropdown-item" href="?pg=buku">Buku</a></li>
                                 <li><a class="dropdown-item" href="?pg=anggota">Anggota</a></li>
+                                <li><a class="dropdown-item" href="?pg=pengembalian">Pengembalian</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="?pg=user">User</a></li>
-                                <li><a class="dropdown-item" href="?pg=user">Level</a></li>
+                                <li><a class="dropdown-item" href="?pg=level">Level</a></li>
                             </ul>
                         </li>
                     </ul>
