@@ -55,6 +55,31 @@ $level = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
                                 </select>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-2">
+                                <label for="">Tanggal Pinjam</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control" name="tgl_pinjam" value="">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-2">
+                                <label for="">Tanggal Kembali</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control" name="tgl_kembali" value="">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-2">
+                                <label for="">Petugas</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control" name="" value="">
+                                <input type="hidden" name="id_user" value="<?php echo ($_SESSION['id_user']); ?>">
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <input type="submit" class="btn btn-primary" name="simpan" value="Simpan">
                         </div>

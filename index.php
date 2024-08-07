@@ -23,7 +23,7 @@ include 'config/koneksi.php';
 
 <body>
     <div class="wrapper">
-        <nav class="navbar menu navbar-expand-lg">
+        <nav class="navbar menu navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Perpustakaan</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,12 +34,6 @@ include 'config/koneksi.php';
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="?page=home">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?page=pinjam">Peminjaman</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?page=pengembalian">Pengembalian</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Menu
@@ -48,6 +42,7 @@ include 'config/koneksi.php';
                                 <li><a class="dropdown-item" href="?pg=kategori">Kategori</a></li>
                                 <li><a class="dropdown-item" href="?pg=buku">Buku</a></li>
                                 <li><a class="dropdown-item" href="?pg=anggota">Anggota</a></li>
+                                <li><a class="dropdown-item" href="?pg=pinjam">Peminjaman</a></li>
                                 <li><a class="dropdown-item" href="?pg=pengembalian">Pengembalian</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -81,6 +76,7 @@ include 'config/koneksi.php';
 
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
 </body>
 
 </html>
