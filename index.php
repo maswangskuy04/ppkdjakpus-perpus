@@ -23,7 +23,7 @@ include 'config/koneksi.php';
 
 <body>
     <div class="wrapper">
-        <nav class="navbar menu navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar menu navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Perpustakaan</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,37 +35,29 @@ include 'config/koneksi.php';
                             <a class="nav-link active" aria-current="page" href="?page=home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?pg=user">User</a>
+                            <a class="nav-link" aria-current="page" href="?page=peminjaman">Peminjaman</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?pg=level">Level</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?pg=kategori">Kategori</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?pg=buku">Buku</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?pg=anggota">Anggota</a>
+                            <a class="nav-link" aria-current="page" href="?page=home">Pengembalian</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                                Menu
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="?pg=kategori">Kategori</a></li>
+                                <li><a class="dropdown-item" href="?pg=buku">Buku</a></li>
+                                <li><a class="dropdown-item" href="?pg=anggota">Anggota</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="?pg=user">User</a></li>
+                                <li><a class="dropdown-item" href="?pg=user">Level</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form class="d-flex">
+                        <a class="btn btn-danger" href="?pg=logout">Keluar</a>
                     </form>
                 </div>
             </div>
@@ -86,7 +78,7 @@ include 'config/koneksi.php';
         <!-- end content-->
     </div>
 
-    <script src="assets/js/jquery-3.7.1.min.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 </body>
 
