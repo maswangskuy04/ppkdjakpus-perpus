@@ -10,7 +10,7 @@ $queryLevel = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
                 <div class="card-header">Data Level</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
-                        <a href="?pg=tambah-level" class="btn btn-primary">Tambah</a>
+                        <a href="?pg=tambah-level" class="btn btn-sm btn-success">Tambah</a>
                     </div>
                     <?php if (isset($_GET['tambah'])) : ?>
                         <div class="alert alert-success">

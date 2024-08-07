@@ -10,7 +10,7 @@ $queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user L
                 <div class="card-header">Data User</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
-                        <a href="?pg=tambah-user" class="btn btn-primary">Tambah</a>
+                        <a href="?pg=tambah-user" class="btn btn-sm btn-success">Tambah</a>
                     </div>
                     <?php if (isset($_GET['tambah'])) : ?>
                         <div class="alert alert-success">

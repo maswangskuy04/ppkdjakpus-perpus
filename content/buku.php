@@ -10,7 +10,7 @@ $queryBuku = mysqli_query($koneksi, "SELECT kategori.nama_kategori, buku.* FROM 
                 <div class="card-header">Data Buku</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
-                        <a href="?pg=tambah-buku" class="btn btn-primary">Tambah</a>
+                        <a href="?pg=tambah-buku" class="btn btn-sm btn-success">Tambah</a>
                     </div>
                     <?php if (isset($_GET['tambah'])) : ?>
                         <div class="alert alert-success">
