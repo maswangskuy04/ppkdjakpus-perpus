@@ -84,7 +84,20 @@ include 'config/koneksi.php';
     <script type="text/javascript">
         $("#id_kategori").change(function() {
             let id = $(this).val();
-            alert("krucuk krucuk");
+            let option = "";
+            $.ajax({
+                url: "ajax/get-buku.php?id_kategori=" + id,
+                type: "GET",
+                dataType: "json",
+                success: function(res) {
+                    option += "<option>Pilih Buku</option>"
+                    $.each(res, function(key, value) {
+                        option += "<option value=" + value.id + ">" + value.judul + "</option>"
+                        // console.log("valuenya : ", value.judul);
+                    });
+                    $('#id_buku').html(option);
+                }
+            })
         });
     </script>
 </body>
