@@ -103,7 +103,7 @@ $queryKategori = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id DESC
                                 <label for="">Kategori Buku</label>
                             </div>
                             <div class="col-sm-3">
-                                <select name="id_kategori" id="" class="form-control">
+                                <select name="id_kategori" id="id_kategori" class="form-control">
                                     <option value="">Pilih Kategori</option>
                                     <?php while ($rowKategori = mysqli_fetch_assoc($queryKategori)) : ?>
                                         <option value="<?= $rowKategori['id']; ?>"><?= $rowKategori['nama_kategori']; ?></option>

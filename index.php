@@ -2,7 +2,6 @@
 session_start();
 include 'config/koneksi.php';
 
-// echo "<h1>Selamat Datang " . (isset($_SESSION['NAMA_LENGKAP'])? $_SESSION['NAMA_LENGKAP'] : ''). "</h1>";
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +56,7 @@ include 'config/koneksi.php';
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <a class="btn btn-danger" href="?pg=logout">Keluar</a>
+                        <a class="btn btn-danger" href="?pg=keluar">Keluar</a>
                     </form>
                 </div>
             </div>
@@ -78,8 +77,16 @@ include 'config/koneksi.php';
         <!-- end content-->
     </div>
 
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $("#id_kategori").change(function() {
+            let id = $(this).val();
+            alert("krucuk krucuk");
+        });
+    </script>
 </body>
 
 </html>
