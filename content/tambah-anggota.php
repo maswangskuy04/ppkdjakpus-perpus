@@ -56,7 +56,7 @@ if (isset($_GET['delete'])) {
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">No Telpon</label>
-                            <input type="text" class="form-control" name="no_tlp" value="<?= $rowEdit['no_tlp'] ?? '' ?>" required>
+                            <input type="number" class="form-control" name="no_tlp" value="<?= $rowEdit['no_tlp'] ?? '' ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Alamat</label>

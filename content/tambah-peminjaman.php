@@ -39,6 +39,7 @@ $no_urut++;
 $kode_transaksi = "PJ" . date("dmY") . sprintf("%03s", $no_urut);
 
 $queryAnggota = mysqli_query($koneksi, "SELECT * FROM anggota ORDER BY id DESC");
+$queryKategori = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id DESC");
 
 ?>
 <div class="container mt-5">
@@ -97,6 +98,19 @@ $queryAnggota = mysqli_query($koneksi, "SELECT * FROM anggota ORDER BY id DESC")
 
                         <!-- Get Data Kategori Buku dan Buku -->
                         
+                        <div class="row mb-3 mt-5">
+                            <div class="col-sm-2">
+                                <label for="">Kategori Buku</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select name="id_kategori" id="" class="form-control">
+                                    <option value="">Pilih Kategori</option>
+                                    <?php while ($rowKategori = mysqli_fetch_assoc($queryKategori)) : ?>
+                                        <option value="<?= $rowKategori['id']; ?>"><?= $rowKategori['nama_kategori']; ?></option>
+                                    <?php endwhile ?>
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="mb-3">
                             <input type="submit" class="btn btn-primary" name="simpan" value="Simpan">

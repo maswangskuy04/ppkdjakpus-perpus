@@ -44,7 +44,7 @@ $queryKategori = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id DESC
                                     <td><?php echo $rowKategori['nama_kategori'] ?></td>
                                     <td><?php echo $rowKategori['keterangan'] ?></td>
                                     <td class="text-center">
-                                        <a href="?pg=tambah-kategori&edit=<?= $rowKategori['id']; ?>" class="btn btn-sm btn-secondary">Edit</a> |
+                                        <a href="?pg=tambah-kategori&edit=<?= $rowKategori['id']; ?>" class="btn btn-sm btn-secondary">Update</a> |
                                         <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-kategori&delete=<?= $rowKategori['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>
