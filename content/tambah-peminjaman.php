@@ -31,6 +31,15 @@ if (isset($_GET['delete'])) {
 
 $level = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
 
+$queryKodeTrans = mysqli_query($koneksi, "SELECT max(id) as id_transaksi FROM peminjaman");
+$rowKodeTrans = mysqli_fetch_assoc($queryKodeTrans);
+$no_urut = $rowKodeTrans['id_transaksi'];
+$no_urut++;
+
+$kode_transaksi = "PJ" . date("dmY") . sprintf("%03s", $no_urut);
+
+$queryAnggota = mysqli_query($koneksi, "SELECT * FROM anggota ORDER BY id DESC");
+
 ?>
 <div class="container mt-5">
     <div class="row">
@@ -40,10 +49,12 @@ $level = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
                 <div class="card-body">
                     <form action="" method="post">
                         <div class="row mb-3">
-                            <label for="">Kode Transaksi</label>
-                        </div>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control" name="kode_transaksi" value="" readonly>
+                            <div class="col-sm-2">
+                                <label for="">Kode Transaksi</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="kode_transaksi" value="<?= ($kode_transaksi ?? '') ?>" readonly>
+                            </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-2">
@@ -52,6 +63,9 @@ $level = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
                             <div class="col-sm-3">
                                 <select name="id_anggota" id="" class="form-control">
                                     <option value="">Pilih Anggota</option>
+                                    <?php while ($rowAnggota = mysqli_fetch_assoc($queryAnggota)) : ?>
+                                        <option value="<?= $rowAnggota['id']; ?>"><?= $rowAnggota['nama_lengkap']; ?></option>
+                                    <?php endwhile ?>
                                 </select>
                             </div>
                         </div>
@@ -76,10 +90,14 @@ $level = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
                                 <label for="">Petugas</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="date" class="form-control" name="" value="">
-                                <input type="hidden" name="id_user" value="<?php echo ($_SESSION['id_user']); ?>">
+                                <input type="text" class="form-control" name="" value="<?= (isset($_SESSION['NAMA_LENGKAP']) ? $_SESSION['NAMA_LENGKAP'] : '') ?>" readonly>
+                                <input type="hidden" class="form-control" name="id_user" value="<?= (isset($_SESSION['ID_USER']) ? $_SESSION['ID_USER'] : '') ?>">
                             </div>
                         </div>
+
+                        <!-- Get Data Kategori Buku dan Buku -->
+                        
+
                         <div class="mb-3">
                             <input type="submit" class="btn btn-primary" name="simpan" value="Simpan">
                         </div>

@@ -32,7 +32,7 @@ $queryPinjam = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggo
                             <tr>
                                 <th>No</th>
                                 <th>Kode Transaksi</th>
-                                <th>Anggota</th>
+                                <th>Nama Anggota</th>
                                 <th>Tanggal Pinjam</th>
                                 <th>Tanggal Kembali</th>
                                 <th>Status</th>
