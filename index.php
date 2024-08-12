@@ -1,7 +1,9 @@
 <?php
+
 session_start();
 include 'config/koneksi.php';
 
+// echo "<h1>Selamat Datang " . (isset($_SESSION['NAMA_LENGKAP']) ? $_SESSION['NAMA_LENGKAP'] : '') . " ID " . (isset($_SESSION['ID_USER']) ? $_SESSION['ID_USER'] : '') . "</h1>";
 ?>
 
 <!DOCTYPE html>
@@ -15,23 +17,24 @@ include 'config/koneksi.php';
     <style>
         nav.menu {
             background-color: white;
-            box-shadow: 0 0 3px #000;
+            box-shadow: 0 0 5px #000;
         }
     </style>
 </head>
 
 <body>
     <div class="wrapper">
-        <nav class="navbar menu navbar-expand-lg bg-body-tertiary">
+        <nav class="menu navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Perpustakaan</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="?page=home">Home</a>
+                            <a class="nav-link active" aria-current="page" href="?pg=home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="?pg=peminjaman">Peminjaman</a>
@@ -40,66 +43,101 @@ include 'config/koneksi.php';
                             <a class="nav-link" href="?pg=pengembalian">Pengembalian</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Menu
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Master Data
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="?pg=kategori">Kategori</a></li>
                                 <li><a class="dropdown-item" href="?pg=buku">Buku</a></li>
+                                <li><a class="dropdown-item" href="?pg=kategori">Kategori</a></li>
                                 <li><a class="dropdown-item" href="?pg=anggota">Anggota</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="?pg=user">User</a></li>
                                 <li><a class="dropdown-item" href="?pg=level">Level</a></li>
+                                <li><a class="dropdown-item" href="?pg=user">User</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="keluar.php" class="nav-link" aria-disabled="true">Keluar</a>
+                        </li>
                     </ul>
-                    <form class="d-flex">
-                        <a class="btn btn-danger" href="?pg=keluar">Keluar</a>
-                    </form>
                 </div>
             </div>
         </nav>
 
-        <!-- content here-->
+        <!-- content here -->
         <?php
         if (isset($_GET['pg'])) {
             if (file_exists('content/' . $_GET['pg'] . '.php')) {
                 include 'content/' . $_GET['pg'] . '.php';
             } else {
-                echo "not found";
+                echo 'Halaman tidak ditemukan.';
             }
         } else {
             include 'content/home.php';
         }
         ?>
-        <!-- end content-->
+        <!-- and here -->
     </div>
 
     <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-        $("#id_kategori").change(function() {
-            let id = $(this).val();
-            let option = "";
+    <script>
+        $('#id_kategori').change(function() {
+            let id = $(this).val(),
+                option = "";
             $.ajax({
                 url: "ajax/get-buku.php?id_kategori=" + id,
                 type: "GET",
                 dataType: "json",
-                success: function(res) {
-                    option += "<option>Pilih Buku</option>"
-                    $.each(res, function(key, value) {
+                success: function(data) {
+                    option += "<option value=''>Pilih Buku</option>";
+                    $.each(data, function(key, value) {
+                        let tahun_terbit = $('#tahun_terbit').val(value.tahun_terbit);
                         option += "<option value=" + value.id + ">" + value.judul + "</option>"
-                        // console.log("valuenya : ", value.judul);
+                        // console.log("valuenya : ", value);
                     });
-                    $('#id_buku').html(option);
+                    $("#id_buku").html(option);
                 }
             })
         });
+
+        $('#tambah-row').click(function() {
+            if ($('#id_kategori').val() == "") {
+                alert('Pilih kategori dulu rek');
+                return false;
+            }
+
+            if ($("#id_buku ").val() == "") {
+                alert('Pilih buku dulu rek');
+                return false;
+            }
+            let nama_kategori = $('#id_kategori').find('option:selected').text(),
+                nama_buku = $('#id_buku').find('option:selected').text(),
+                tahun_terbit = $('#tahun_terbit').val(),
+                id_kategori = $('#id_kategori').val(),
+                id_buku = $('#id_buku').val();
+
+            let tbody = $('tbody');
+            let no = tbody.find('tr').length + 1;
+            let table = "<tr>";
+            table += "<td>" + no + "</td>";
+            table += "<td>" + nama_kategori + " <input type='hidden' name='id_kategori[]' value='" + id_kategori + "'</td>";
+            table += "<td>" + nama_buku + " <input type='hidden' name='id_buku[]' value='" + id_buku + "'</td>";
+            table += "<td>" + tahun_terbit + "</td>";
+            table += "<td><button type='button' class='remove btn btn-sm btn-success'>Delete</button></td>";
+            table += "</tr>";
+            tbody.append(table);
+
+            $('.remove').click(function() {
+                $(this).closest('tr').remove();
+            });
+        });
     </script>
+
 </body>
 
 </html>

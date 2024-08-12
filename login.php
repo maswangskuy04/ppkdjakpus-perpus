@@ -11,7 +11,7 @@ if (isset($_POST['login'])) {
         $dataUser = mysqli_fetch_assoc($queryLogin);
         if($password == $dataUser['password']) {
             $_SESSION['NAMA_LENGKAP'] = $dataUser['nama_lengkap'];
-            $_session['ID_USER']      = $dataUser['id'];
+            $_SESSION['ID_USER']      = $dataUser['id'];
             header("location:index.php");
         } else{
             header("location:login.php?error=login");
