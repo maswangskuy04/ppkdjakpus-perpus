@@ -32,7 +32,7 @@ if (isset($_GET['delete'])) {
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card">
+            <div class="card text-light" style="background-color: rgba(87, 99, 89, .8)">
                 <div class="card-header">Tambah Data Level</div>
                 <div class="card-body">
                     <form action="" method="post">

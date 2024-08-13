@@ -6,7 +6,7 @@ $queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user L
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card">
+            <div class="card text-light" style="background-color: rgba(87, 99, 89, .8)">
                 <div class="card-header">Data User</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
@@ -46,7 +46,7 @@ $queryUser = mysqli_query($koneksi, "SELECT level.nama_level, user.* FROM user L
                                     <td><?php echo $rowUser['nama_lengkap'] ?></td>
                                     <td><?php echo $rowUser['email'] ?></td>
                                     <td class="text-center">
-                                        <a href="?pg=tambah-user&edit=<?= $rowUser['id']; ?>" class="btn btn-sm btn-secondary">Update</a> |
+                                        <a href="?pg=tambah-user&edit=<?= $rowUser['id']; ?>" class="btn btn-sm btn-secondary">Update</a>
                                         <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-user&delete=<?= $rowUser['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>

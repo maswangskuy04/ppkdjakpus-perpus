@@ -35,7 +35,7 @@ $level = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card">
+            <div class="card text-light" style="background-color: rgba(87, 99, 89, .8)">
                 <div class="card-header">Data User</div>
                 <div class="card-body">
                     <form action="" method="post">

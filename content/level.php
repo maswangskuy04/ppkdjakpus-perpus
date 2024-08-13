@@ -6,7 +6,7 @@ $queryLevel = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card">
+            <div class="card text-light" style="background-color: rgba(87, 99, 89, .8)">
                 <div class="card-header">Data Level</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
@@ -44,7 +44,7 @@ $queryLevel = mysqli_query($koneksi, "SELECT * FROM level ORDER BY id DESC");
                                     <td><?php echo $rowLevel['nama_level'] ?></td>
                                     <td><?php echo $rowLevel['keterangan'] ?></td>
                                     <td class="text-center">
-                                        <a href="?pg=tambah-level&edit=<?= $rowLevel['id']; ?>" class="btn btn-sm btn-secondary">Update</a> |
+                                        <a href="?pg=tambah-level&edit=<?= $rowLevel['id']; ?>" class="btn btn-sm btn-secondary">Update</a>
                                         <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-level&delete=<?= $rowLevel['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>

@@ -6,7 +6,7 @@ $queryBuku = mysqli_query($koneksi, "SELECT kategori.nama_kategori, buku.* FROM 
 <div class="container mt-5">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card">
+            <div class="card text-light" style="background-color: rgba(87, 99, 89, .8)">
                 <div class="card-header">Data Buku</div>
                 <div class="card-body">
                     <div align="right" class="mb-3">
@@ -52,7 +52,7 @@ $queryBuku = mysqli_query($koneksi, "SELECT kategori.nama_kategori, buku.* FROM 
                                     <td><?php echo $rowBuku['tahun_terbit'] ?></td>
                                     <td><?php echo $rowBuku['penulis'] ?></td>
                                     <td class="text-center">
-                                        <a href="?pg=tambah-buku&edit=<?= $rowBuku['id']; ?>" class="btn btn-sm btn-secondary">Update</a> |
+                                        <a href="?pg=tambah-buku&edit=<?= $rowBuku['id']; ?>" class="btn btn-sm btn-secondary">Update</a>
                                         <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-buku&delete=<?= $rowBuku['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>

@@ -2,6 +2,7 @@
 
 session_start();
 include 'config/koneksi.php';
+include 'function/helper.php';
 
 // echo "<h1>Selamat Datang " . (isset($_SESSION['NAMA_LENGKAP']) ? $_SESSION['NAMA_LENGKAP'] : '') . " ID " . (isset($_SESSION['ID_USER']) ? $_SESSION['ID_USER'] : '') . "</h1>";
 ?>
@@ -15,6 +16,13 @@ include 'config/koneksi.php';
     <title>Selamat Datang</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <style>
+        body {
+            background: url('assets/img/suki.jfif');
+            background-repeat: no-repeat;
+            background-size: 400px;
+            background-position: center 400px;
+        }
+
         nav.menu {
             background-color: white;
             box-shadow: 0 0 5px #000;
@@ -26,7 +34,7 @@ include 'config/koneksi.php';
     <div class="wrapper">
         <nav class="menu navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Perpustakaan</a>
+                <a class="navbar-brand" href="#">CRUD BROOH</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -135,6 +143,21 @@ include 'config/koneksi.php';
             $('.remove').click(function() {
                 $(this).closest('tr').remove();
             });
+        });
+
+        $('#kode_peminjaman').change(function() {
+            let id = $(this).val(),
+                option = "";
+            $.ajax({
+                url: "ajax/get-data-transaksi.php?kode_transaksi=" + id,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('#nama_anggota').val(data.data.nama_lengkap);
+                    $('#tgl_pinjam').val(data.data.tgl_pinjam);
+                    $('#tgl_kembali').val(data.data.tgl_kembali);
+                }
+            })
         });
     </script>
 
