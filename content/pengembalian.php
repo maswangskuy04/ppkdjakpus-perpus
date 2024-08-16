@@ -1,6 +1,6 @@
 <?php
 
-$queryPinjam = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggota, user.nama_lengkap, peminjaman.* FROM peminjaman LEFT JOIN anggota ON anggota.id = peminjaman.id_anggota LEFT JOIN user ON user.id = peminjaman.id_user WHERE peminjaman.deleted_at = 0 ORDER BY id DESC");
+$queryPinjam = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggota, user.nama_lengkap, peminjaman.* FROM peminjaman LEFT JOIN anggota ON anggota.id = peminjaman.id_anggota LEFT JOIN user ON user.id = peminjaman.id_user ORDER BY id DESC");
 
 ?>
 <div class="container mt-5">
@@ -38,7 +38,6 @@ $queryPinjam = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggo
                                     <th>Tanggal Kembali</th>
                                     <th>Status</th>
                                     <th>Petugas</th>
-                                    <th class="col-2 text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,10 +51,10 @@ $queryPinjam = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggo
                                         <td><?php echo $row['tgl_kembali']; ?></td>
                                         <td><?php echo $row['status']; ?></td>
                                         <td><?php echo $row['nama_lengkap']; ?></td>
-                                        <td class="text-center">
+                                        <!-- <td class="text-center">
                                             <a href="?pg=tambah-peminjaman&detail=<?= $row['id']; ?>" class="btn btn-sm btn-secondary">Detail</a>
                                             <a onclick="return confirm('Apakah anda ingin menghapus data ini ?')" href="?pg=tambah-peminjaman&delete=<?= $row['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 <?php endwhile ?>
                             </tbody>

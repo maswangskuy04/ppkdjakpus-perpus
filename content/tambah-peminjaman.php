@@ -30,7 +30,7 @@ if (isset($_POST['simpan'])) {
     $insert = mysqli_query($koneksi, "INSERT INTO peminjaman (kode_transaksi, id_anggota, id_user, tgl_pinjam, tgl_kembali, status) VALUES ('$kode_transaksi', '$id_anggota', '$id_user', '$tgl_pinjam', '$tgl_kembali', '1')");
 
     if ($insert) {
-        $id_peminjam = mysqli_insert_id($koneksi);
+        $id_peminjaman = mysqli_insert_id($koneksi);
         foreach ($id_kategori as $key => $value) {
             $id_kategori = $_POST['id_kategori'][$key];
             $id_buku = $_POST['id_buku'][$key];

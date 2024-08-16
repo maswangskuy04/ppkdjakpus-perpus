@@ -8,7 +8,7 @@ $queryPinjam = mysqli_query($koneksi, "SELECT anggota.nama_lengkap as nama_anggo
         <div class="col-sm-12">
             <div class="card text-light" style="background-color: rgba(87, 99, 89, .8)">
                 <div class="card-header">
-                    <h2>Transaksi Peminjaman</h2>
+                    Transaksi Peminjaman
                 </div>
                 <div class="card-body">
                     <div align="right" class="mb-3">

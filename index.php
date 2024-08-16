@@ -17,10 +17,8 @@ include 'function/helper.php';
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <style>
         body {
-            background: url('assets/img/suki.jfif');
+            background: url('assets/img/bg-jumbotron.jpg');
             background-repeat: no-repeat;
-            background-size: 400px;
-            background-position: center 400px;
         }
 
         nav.menu {
@@ -66,9 +64,9 @@ include 'function/helper.php';
                                 <li><a class="dropdown-item" href="?pg=user">User</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="keluar.php" class="nav-link" aria-disabled="true">Keluar</a>
-                        </li>
+                        <form class="float-end">
+                            <a href="keluar.php" class="btn btn-outline-danger">Keluar</a>
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -92,6 +90,7 @@ include 'function/helper.php';
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/moment.js"></script>
 
     <script>
         $('#id_kategori').change(function() {
@@ -153,12 +152,58 @@ include 'function/helper.php';
                 type: "GET",
                 dataType: "json",
                 success: function(data) {
+                    // console.log("nilai sebelum di looping", data);
                     $('#nama_anggota').val(data.data.nama_lengkap);
                     $('#tgl_pinjam').val(data.data.tgl_pinjam);
                     $('#tgl_kembali').val(data.data.tgl_kembali);
+
+                    let tanggal_kembali = new moment(data.data.tgl_kembali);
+                    let tanggal_pengembalian = new moment('2024-8-16');
+                    let selisih = tanggal_pengembalian.diff(tanggal_kembali, 'days');
+                    if (selisih < 0) {
+                        selisih = 0;
+                    }
+                    let denda = 1000000;
+                    let total_denda = selisih * denda;
+
+                    $('.total-denda').html("<h5>Rp. " + total_denda.toLocaleString('id-ID') + "</h5>");
+                    $('#tgl_pengembalian').val(tanggal_pengembalian);
+                    $('#denda').val(total_denda);
+                    $('#keterlambatan').val(selisih);
+
+                    let tbody = $('tbody'),
+                        newRow = "";
+
+                    let no = tbody.find('tr').length + 1;
+
+                    $.each(data.detail_pinjam, function(index, val) {
+                        // console.log("nilai sesudah di looping", val);
+                        newRow += "<tr>";
+                        newRow += "<td>" + no++ + "</td>";
+                        newRow += "<td>" + val.nama_kategori + "</td>";
+                        newRow += "<td>" + val.judul + "</td>";
+                        newRow += "<td>" + val.tahun_terbit + "</td>";
+                        newRow += "</tr>";
+                    });
+                    tbody.html(newRow);
                 }
             })
         });
+
+        // let tanggalSekarang = new Date();
+        // let formatIndonesia  = new Intl.DateTimeFormat('id-ID', {
+        //     year: 'numeric',
+        //     month: '2-digit',
+        //     day: '2-digit'
+        // }).format(tanggalSekarang);
+
+        // let tgl_kembali = $('#tgl_kembali').val();
+        // let tgl_pengembalian = $('#tgl_pengembalian');
+        // let tanggal_kembali = new moment(tgl_kembali);
+        // let tanggal_pengembalian = new moment('2024-08-12');
+
+        // let selisih = tanggal_pengembalian.diff(tanggal_kembali, 'days');
+        // console.log(selisih);
     </script>
 
 </body>
