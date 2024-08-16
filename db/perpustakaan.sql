@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2024 at 10:13 AM
+-- Generation Time: Aug 16, 2024 at 10:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,8 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`id`, `nisn`, `nama_lengkap`, `jenis_kelamin`, `no_tlp`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, '041001', 'Mister Abdul', 'Laki-Laki', '85213087446', 'Jomokerto', '2024-08-06 07:10:42', '2024-08-07 04:48:08');
+(1, '041001', 'Mister Abdul', 'Laki-Laki', '85213087446', 'Jomokerto', '2024-08-06 07:10:42', '2024-08-07 04:48:08'),
+(2, '041002', 'Ambatudin', 'Laki-Laki', '088212426036', 'Ngawi', '2024-08-16 02:54:30', '2024-08-16 02:54:30');
 
 -- --------------------------------------------------------
 
@@ -91,15 +92,10 @@ CREATE TABLE `detail_peminjaman` (
 --
 
 INSERT INTO `detail_peminjaman` (`id`, `id_peminjaman`, `id_buku`, `id_kategori`) VALUES
-(1, 0, 0, 0),
-(2, 0, 0, 0),
-(3, 0, 0, 0),
-(4, 0, 0, 0),
-(5, 0, 0, 0),
-(6, 0, 0, 0),
-(7, 0, 0, 0),
-(8, 0, 0, 0),
-(9, 0, 3, 2);
+(1, 1, 3, 2),
+(2, 1, 1, 1),
+(3, 2, 2, 1),
+(4, 2, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -169,7 +165,33 @@ CREATE TABLE `peminjaman` (
 --
 
 INSERT INTO `peminjaman` (`id`, `id_anggota`, `id_user`, `kode_transaksi`, `tgl_pinjam`, `tgl_kembali`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 4, 'PJ12082024001', '2024-08-14', '2024-08-15', 1, '2024-08-12 07:24:25', '2024-08-12 08:07:12', 0);
+(1, 1, 4, 'PJ16082024001', '2024-08-18', '2024-08-20', 2, '2024-08-16 02:32:38', '2024-08-16 08:47:27', 0),
+(2, 2, 4, 'PJ16082024002', '2024-08-19', '2024-08-21', 2, '2024-08-16 02:55:02', '2024-08-16 08:50:32', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengembalian`
+--
+
+CREATE TABLE `pengembalian` (
+  `id` int(11) NOT NULL,
+  `id_peminjaman` int(11) NOT NULL,
+  `tgl_pengembalian` date NOT NULL,
+  `kode_pengembalian` varchar(30) NOT NULL,
+  `terlambat` int(11) NOT NULL,
+  `denda` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pengembalian`
+--
+
+INSERT INTO `pengembalian` (`id`, `id_peminjaman`, `tgl_pengembalian`, `kode_pengembalian`, `terlambat`, `denda`, `created_at`, `updated_at`) VALUES
+(1, 1, '0000-00-00', '', 0, 0, '2024-08-16 08:47:27', '2024-08-16 08:47:27'),
+(2, 2, '2024-08-16', '', 0, 0, '2024-08-16 08:50:32', '2024-08-16 08:50:32');
 
 -- --------------------------------------------------------
 
@@ -237,6 +259,12 @@ ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pengembalian`
+--
+ALTER TABLE `pengembalian`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -250,7 +278,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `buku`
@@ -262,7 +290,7 @@ ALTER TABLE `buku`
 -- AUTO_INCREMENT for table `detail_peminjaman`
 --
 ALTER TABLE `detail_peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -280,7 +308,13 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pengembalian`
+--
+ALTER TABLE `pengembalian`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
